@@ -1,11 +1,13 @@
 import { useDispatch } from "react-redux"
+import { logout } from "../store/reducers/authReducer";
 
 const AdminNav = ({ openSidebar }) => {
   const dispatch = useDispatch();
 
   const adminLogout = () => {
-
+    dispatch(logout('admin-token'));
   }
+
   return (
     <nav className="fixed left-0 sm:left-64 top-4 right-0 mx-4">
       <div className="bg-gray-800 w-full flex justify-between sm:justify-end items-center p-4">
