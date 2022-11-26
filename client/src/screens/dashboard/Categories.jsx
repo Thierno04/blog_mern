@@ -46,7 +46,7 @@ const Categories = () => {
       {success && <div className="alert-success">{success}</div>}
       {!isFetching ? data?.categories?.length > 0 &&
         <div className="overflow-x-scroll sm:overflow-x-hidden">
-          <div>
+          <div> 
             <table className="w-full bg-gray-900 rounded-md">
               <thead>
                 <tr className="border-b border-gray-800 text-left">
