@@ -1,11 +1,12 @@
 const ProductModel = require("../models/ProductModel");
-
 class HomeProducts {
     async catProducts(req, res) {
         const { name, page, keyword } = req.params;
         const perPage = 12;
         const skip = (page - 1) * perPage;
-        const options = name ? { category: name } : keyword && { title: { $regex: `${keyword}`, $options: "i" } };
+        const options = name ? { category: name } : keyword && {
+            title: { $regex: `${keyword}`, $options: "i" }
+        };
 
         if (page) {
             try {
