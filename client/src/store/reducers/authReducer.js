@@ -1,19 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
-import jwtDecode from "jwt-decode";
+import { createSlice } from "@reduxjs/toolkit";
+import jwtDecode from "jwt-decode"
+const customerToken = localStorage.getItem('userToken')
 
-const adminStorage = localStorage.getItem('admin-token');
+function verifyToken(keyName) {
+    const storage = localStorage.getItem(keyName);
 
-function verifyToken() {
-    if (adminStorage) {
-        const decodeToken = jwtDecode(adminStorage);
+    if (storage) {
+        const decodeToken = jwtDecode(storage);
         const expiresIn = new Date(decodeToken.exp * 1000);
-
         if (new Date() > expiresIn) {
-            localStorage.removeItem('admin-token');
+            localStorage.removeItem(keyName);
+            return null;
         } else {
-            return adminStorage;
+            return storage;
         }
-
     } else {
         return null;
     }
@@ -21,22 +21,38 @@ function verifyToken() {
 
 const authReducer = createSlice({
     name: 'authReducer',
-
     initialState: {
-        adminToken: verifyToken()
+        adminToken: verifyToken('admin-token'),
+        userToken: verifyToken('userToken'),
+        user: customerToken ? jwtDecode(customerToken) : null,
     },
 
     reducers: {
+
         setAdminToken: (state, action) => {
             state.adminToken = action.payload;
         },
 
-        logout: (state) => {
-            localStorage.removeItem('admin-token')
-            state.adminToken = null;
+        setUserToken: (state, action) => {
+            state.userToken = action.payload;
+            state.user = jwtDecode(action.payload);
+        },
+
+        logout: (state, { payload }) => {
+            localStorage.removeItem(payload)
+            if (payload === 'admin-token') {
+                state.adminToken = null;
+            } else if (payload === 'userToken') {
+                state.userToken = null;
+                state.user = null;
+            }
         }
     }
 })
 
-export const { setAdminToken, logout } = authReducer.actions
-export default authReducer.reducer
+export const {
+    setAdminToken,
+    setUserToken,
+    logout
+} = authReducer.actions;
+export default authReducer.reducer;

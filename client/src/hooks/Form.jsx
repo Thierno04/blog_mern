@@ -1,9 +1,15 @@
-import React from 'react'
+import { useState } from "react";
 
-const Form = () => {
-  return (
-    <div>Form</div>
-  )
-}
+export const useForm = (initState) => {
+  const [state, setState] = useState(initState);
 
-export default Form
+  const onChange = (e) => {
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
+
+  return {
+    state,
+    onChange,
+  };
+
+};
