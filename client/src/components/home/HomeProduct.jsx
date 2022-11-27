@@ -8,7 +8,7 @@ const HomeProduct = ({ category }) => {
     name: category.name,
     page: "",
   });
-  
+
   return isFetching ? (
     <ProductSkeleton />
   ) : (
