@@ -9,9 +9,11 @@ import UpdateCategory from "../screens/dashboard/UpdateCategory";
 import Login from "../screens/home/auth/Login";
 import Register from "../screens/home/auth/Register";
 import Home from "../screens/home/Home";
+import Dashboard from "../screens/users/Dashboard";
 import Private from "./Private";
 import Public from "./Public";
 import UserAuthRoute from "./UserAuthRoute";
+import UserRoute from "./UserRoute";
 
 const Routing = () => {
   return (
@@ -21,6 +23,9 @@ const Routing = () => {
         <Route element={<UserAuthRoute />}>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+        </Route>
+        <Route element={<UserRoute />}>
+          <Route path="user" element={<Dashboard />} />
         </Route>
         <Route path="auth">
           <Route path="admin-login" element={<Public><AdminLogin /></Public>} />
