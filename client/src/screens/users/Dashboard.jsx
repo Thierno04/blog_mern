@@ -11,7 +11,7 @@ const Dashboard = () => {
   return (
     <>
       <Nav />
-      <Toaster position="top-right" />
+      <Toaster position="top-right" reverseOrder={false} />
       <div className="mt-[70px]">
         <Header>my account</Header>
         <div className="my-container mt-[40px]">

@@ -8,6 +8,7 @@ import Products from "../screens/dashboard/Products";
 import UpdateCategory from "../screens/dashboard/UpdateCategory";
 import Login from "../screens/home/auth/Login";
 import Register from "../screens/home/auth/Register";
+import CatProducts from "../screens/home/CatProducts";
 import Home from "../screens/home/Home";
 import Dashboard from "../screens/users/Dashboard";
 import Private from "./Private";
@@ -20,6 +21,8 @@ const Routing = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="cat-products/:name" element={<CatProducts />} />
+        <Route path="cat-products/:name/:page" element={<CatProducts />} />
         <Route element={<UserAuthRoute />}>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />

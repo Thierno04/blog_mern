@@ -1,11 +1,4 @@
-import React from 'react'
-
-const discount = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
-
-export default discount
+export const discount = (price, discount) => {
+  const percentage = discount / 100;
+  return price - price * percentage;
+};
