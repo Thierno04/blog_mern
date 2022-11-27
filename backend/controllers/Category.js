@@ -101,6 +101,7 @@ class Category {
         }
     }
 
+    // random Categories
     async randomCategories(req, res) {
         try {
             const categories = await CatgoryModel.aggregate([
